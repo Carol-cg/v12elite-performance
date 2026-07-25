@@ -49,9 +49,39 @@ async function getMyBookings(req, res, next) {
     next(error);
   }
 }
+// @desc    Get one booking belonging to the logged-in user
+// @route   GET /api/bookings/:id
+// @access  Private
+async function getBookingById(req, res, next) {
+  try {
+    const booking = await Booking.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+
+    if (!booking) {
+      return res.status(404).json({
+        success: false,
+        message: "Booking not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      booking,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+
 
 module.exports = {
   createBooking,
   getMyBookings,
+  getBookingById,
 };
+
 
