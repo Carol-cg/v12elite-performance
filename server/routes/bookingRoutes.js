@@ -5,6 +5,7 @@ const {
   createBooking,
   getMyBookings,
   getBookingById,
+    updateBooking,
 } = require("../controllers/bookingController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -12,5 +13,5 @@ const { protect } = require("../middleware/authMiddleware");
 router.post("/", protect, createBooking);
 router.get("/", protect, getMyBookings);
 router.get("/:id", protect, getBookingById);
-
+router.patch("/:id", protect, updateBooking);
 module.exports = router;

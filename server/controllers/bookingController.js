@@ -77,11 +77,73 @@ async function getBookingById(req, res, next) {
 
 
 
+// @desc    Update a booking belonging to the logged-in user
+// @route   PATCH /api/bookings/:id
+// @access  Private
+async function updateBooking(req, res, next) {
+  try {
+    const booking = await Booking.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+
+    if (!booking) {
+      return res.status(404).json({
+        success: false,
+        message: "Booking not found",
+      });
+    }
+
+    const {
+      service,
+      vehicle,
+      appointmentDate,
+      appointmentTime,
+      notes,
+    } = req.body;
+
+    if (service !== undefined) {
+      booking.service = service;
+    }
+
+    if (vehicle !== undefined) {
+      booking.vehicle = {
+        ...booking.vehicle.toObject(),
+        ...vehicle,
+      };
+    }
+
+    if (appointmentDate !== undefined) {
+      booking.appointmentDate = appointmentDate;
+    }
+
+    if (appointmentTime !== undefined) {
+      booking.appointmentTime = appointmentTime;
+    }
+
+    if (notes !== undefined) {
+      booking.notes = notes;
+    }
+
+    const updatedBooking = await booking.save();
+
+    res.status(200).json({
+      success: true,
+      booking: updatedBooking,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
 
 module.exports = {
   createBooking,
   getMyBookings,
   getBookingById,
+  updateBooking,
 };
+
 
 
