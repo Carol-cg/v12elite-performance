@@ -7,7 +7,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const { generalLimiter } = require("./middleware/rateLimiter");
 const { notFound, errorHandler } = require("./middleware/errorHandler");
 const authRoutes = require("./routes/authRoutes");
-
+const bookingRoutes = require("./routes/bookingRoutes");
 const app = express();
 
 // Security headers
@@ -42,6 +42,8 @@ app.get("/api/health", (req, res) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
+
+app.use("/api/bookings", bookingRoutes);
 
 // 404 + centralized error handler (must be last)
 app.use(notFound);
