@@ -28,6 +28,21 @@ if (selectedDate < today) {
 }
 
 
+const existingBooking = await Booking.findOne({
+  appointmentDate: selectedDate,
+  appointmentTime,
+  status: { $ne: "cancelled" },
+});
+
+if (existingBooking) {
+  return res.status(409).json({
+    success: false,
+    message: "This appointment time is already booked",
+  });
+}
+
+
+
 
     const booking = await Booking.create({
       user: req.user._id,
@@ -109,6 +124,15 @@ async function updateBooking(req, res, next) {
         message: "Booking not found",
       });
     }
+
+
+if (booking.status === "cancelled") {
+  return res.status(400).json({
+    success: false,
+    message: "Cancelled bookings cannot be modified",
+  });
+}
+
 
     const {
       service,
