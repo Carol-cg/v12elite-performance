@@ -13,6 +13,22 @@ async function createBooking(req, res, next) {
       notes,
     } = req.body;
 
+
+const selectedDate = new Date(appointmentDate);
+const today = new Date();
+
+// Remove the time so we compare only the dates
+today.setHours(0, 0, 0, 0);
+
+if (selectedDate < today) {
+  return res.status(400).json({
+    success: false,
+    message: "Appointment date cannot be in the past",
+  });
+}
+
+
+
     const booking = await Booking.create({
       user: req.user._id,
       service,
