@@ -142,6 +142,31 @@ if (booking.status === "cancelled") {
       notes,
     } = req.body;
 
+const newAppointmentDate =
+  appointmentDate !== undefined
+    ? appointmentDate
+    : booking.appointmentDate;
+
+const newAppointmentTime =
+  appointmentTime !== undefined
+    ? appointmentTime
+    : booking.appointmentTime;
+
+const conflictingBooking = await Booking.findOne({
+  _id: { $ne: booking._id },
+  appointmentDate: newAppointmentDate,
+  appointmentTime: newAppointmentTime,
+  status: { $ne: "cancelled" },
+});
+
+if (conflictingBooking) {
+  return res.status(409).json({
+    success: false,
+    message: "This appointment time is already booked",
+  });
+}
+
+
     if (service !== undefined) {
       booking.service = service;
     }
