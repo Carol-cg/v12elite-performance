@@ -12,8 +12,8 @@ function generateToken(id) {
 async function register(req, res, next) {
   try {
     const { name, email, password } = req.body;
-
-    const existingUser = await User.findOne({ email });
+    const normalizedEmail = email.trim().toLowerCase();
+    const existingUser = await User.findOne({ email: normalizedEmail });
     if (existingUser) {
       return res.status(409).json({ success: false, message: "An account with this email already exists" });
     }
@@ -21,7 +21,11 @@ async function register(req, res, next) {
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await User.create({ name, email, password: hashedPassword });
+    const user = await User.create({
+  name,
+  email: normalizedEmail,
+  password: hashedPassword,
+});
 
     const token = generateToken(user._id);
 
@@ -38,9 +42,12 @@ async function register(req, res, next) {
 // @route  POST /api/auth/login
 async function login(req, res, next) {
   try {
-    const { email, password } = req.body;
+   const { email, password } = req.body;
+const normalizedEmail = email.trim().toLowerCase();
 
-    const user = await User.findOne({ email }).select("+password");
+const user = await User.findOne({
+  email: normalizedEmail,
+}).select("+password");
 
     if (!user) {
       return res.status(401).json({ success: false, message: "Invalid email or password" });

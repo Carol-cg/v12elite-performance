@@ -144,13 +144,30 @@ if (booking.status === "cancelled") {
 
 const newAppointmentDate =
   appointmentDate !== undefined
-    ? appointmentDate
+    ? new Date(appointmentDate)
     : booking.appointmentDate;
+if (Number.isNaN(newAppointmentDate.getTime())) {
+  return res.status(400).json({
+    success: false,
+    message: "Please provide a valid appointment date",
+  });
+}
 
 const newAppointmentTime =
   appointmentTime !== undefined
     ? appointmentTime
     : booking.appointmentTime;
+
+// Prevent rescheduling to a past date
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+if (newAppointmentDate < today) {
+  return res.status(400).json({
+    success: false,
+    message: "Appointment date cannot be in the past",
+  });
+}
 
 const conflictingBooking = await Booking.findOne({
   _id: { $ne: booking._id },
@@ -179,7 +196,7 @@ if (conflictingBooking) {
     }
 
     if (appointmentDate !== undefined) {
-      booking.appointmentDate = appointmentDate;
+     booking.appointmentDate = newAppointmentDate;
     }
 
     if (appointmentTime !== undefined) {
