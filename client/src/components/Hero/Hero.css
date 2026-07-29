@@ -1,0 +1,41 @@
+.hero {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background: #111;
+  color: white;
+}
+
+.hero-overlay {
+  max-width: 850px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  color: #d1d1d1;
+  margin-bottom: 35px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero-buttons button {
+  padding: 14px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+}
