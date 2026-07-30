@@ -1,0 +1,36 @@
+.service-card {
+  background: #1b1b1b;
+  color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+}
+
+.service-card h3 {
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.service-card p {
+  color: #cfcfcf;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.service-card button {
+  padding: 10px 20px;
+  border: none;
+  background: #b40000;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.service-card button:hover {
+  background: #d60000;
+}
