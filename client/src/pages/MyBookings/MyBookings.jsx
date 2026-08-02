@@ -5,6 +5,9 @@ function MyBookings() {
   const [bookings, setBookings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedBooking, setSelectedBooking] = useState(null);
+ const [newDate, setNewDate] = useState("");
+ const [newTime, setNewTime] = useState("");
 
   useEffect(() => {
     const loadBookings = async () => {
@@ -52,6 +55,52 @@ const handleCancel = async (bookingId) => {
   }
 };
 
+const handleReschedule = (booking) => {
+  setSelectedBooking(booking);
+  setNewDate(booking.appointmentDate.slice(0, 10));
+  setNewTime(booking.appointmentTime);
+};
+
+const handleSaveReschedule = async (event) => {
+  event.preventDefault();
+
+  if (!selectedBooking || !newDate || !newTime) {
+    setError("Please select a new date and time.");
+    return;
+  }
+
+  try {
+    setError("");
+
+    const data = await bookingService.updateBooking(
+      selectedBooking._id,
+      {
+        appointmentDate: newDate,
+        appointmentTime: newTime,
+      }
+    );
+
+    setBookings((previousBookings) =>
+      previousBookings.map((booking) =>
+        booking._id === selectedBooking._id
+          ? data.booking
+          : booking
+      )
+    );
+
+    setSelectedBooking(null);
+    setNewDate("");
+    setNewTime("");
+  } catch (error) {
+    console.error("Reschedule booking error:", error);
+
+    setError(
+      error.response?.data?.message ||
+        error.message ||
+        "Unable to reschedule the booking."
+    );
+  }
+};
 
 
 
@@ -67,6 +116,51 @@ const handleCancel = async (bookingId) => {
     <main>
       <h1>My Bookings</h1>
 
+{selectedBooking && (
+  <div>
+    <h2>Reschedule Appointment</h2>
+
+    <p>
+      Selected Service: {selectedBooking.service}
+    </p>
+
+    <form onSubmit={handleSaveReschedule}>
+      <div>
+        <label htmlFor="newDate">New Date</label>
+
+        <input
+          id="newDate"
+          type="date"
+          value={newDate}
+          onChange={(event) => setNewDate(event.target.value)}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="newTime">New Time</label>
+
+        <input
+          id="newTime"
+          type="time"
+          value={newTime}
+          onChange={(event) => setNewTime(event.target.value)}
+        />
+      </div>
+
+      <button type="submit">
+        Save Changes
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setSelectedBooking(null)}
+      >
+        Cancel
+      </button>
+    </form>
+  </div>
+)}
+
       {bookings.length === 0 ? (
         <p>You do not have any bookings yet.</p>
       ) : (
@@ -80,12 +174,13 @@ const handleCancel = async (bookingId) => {
               {booking.vehicle.year}
             </p>
 
-            <p>
-              Date:{" "}
-              {new Date(
-                booking.appointmentDate
-              ).toLocaleDateString()}
-            </p>
+          <p>
+             Date:{" "}
+             {new Date(booking.appointmentDate).toLocaleDateString(
+             "en-US",
+             { timeZone: "UTC" }
+         )}
+        </p>
 
             <p>Time: {booking.appointmentTime}</p>
 
@@ -98,6 +193,14 @@ const handleCancel = async (bookingId) => {
                  {booking.status === "cancelled"
                   ? "Booking Cancelled"
                   : "Cancel Booking"}
+             </button>
+
+
+             <button
+                 onClick={() => handleReschedule(booking)}
+                 disabled={booking.status === "cancelled"}
+>
+                 Reschedule
              </button>
 
          {booking.notes && (

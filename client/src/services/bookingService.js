@@ -20,9 +20,19 @@ const cancelBooking = async (bookingId) => {
   return response.data;
 };
 
+const updateBooking = async (bookingId, bookingData) => {
+  const response = await api.patch(
+    `/bookings/${bookingId}`,
+    bookingData
+  );
+
+  return response.data;
+};
+
 const bookingService = {
   createBooking,
   getMyBookings,
+  updateBooking,
   cancelBooking,
 };
 
