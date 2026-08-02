@@ -38,11 +38,18 @@ function Register() {
         email: "",
         password: "",
       });
-    } catch (err) {
-      setError(err.message || "Registration failed");
-    } finally {
-      setIsSubmitting(false);
-    }
+   } catch (err) {
+  if (err.response?.status === 429) {
+    setError("Too many registration attempts. Please wait a few minutes and try again.");
+  } else {
+    setError(
+      err.response?.data?.message ||
+      "Unable to register right now. Please try again."
+    );
+  }
+} finally {
+  setIsSubmitting(false);
+}
   };
 
   return (

@@ -11,12 +11,14 @@ function Navbar() {
         </Link>
 
         <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/book">Schedule Service</Link>
-        </nav>
+  <Link to="/">Home</Link>
+  <Link to="/services">Services</Link>
+  <Link to="/login">Login</Link>
+  <Link to="/register">Register</Link>
+  <Link to="/book">Schedule Service</Link>
+  <Link to="/bookings">My Bookings</Link>
+     
+     </nav>
       </div>
     </header>
   );

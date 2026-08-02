@@ -9,22 +9,55 @@ import BookAppointment from "./pages/BookAppointment/BookAppointment";
 import MyBookings from "./pages/MyBookings/MyBookings";
 import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
 
-    <Navbar />
-    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/book" element={<BookAppointment />} />
-        <Route path="/bookings" element={<MyBookings />} />
-        <Route path="/profile" element={<Profile />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/book"
+          element={
+            <ProtectedRoute>
+              <BookAppointment />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/bookings"
+          element={
+            <ProtectedRoute>
+              <MyBookings />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

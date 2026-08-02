@@ -1,35 +1,13 @@
-import API_BASE_URL from "./api";
-
-const handleResponse = async (response) => {
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong");
-  }
-
-  return data;
-};
+import api from "./api";
 
 export const registerUser = async (userData) => {
-  const response = await fetch(`${API_BASE_URL}/auth/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  });
+  const response = await api.post("/auth/register", userData);
 
-  return handleResponse(response);
+  return response.data;
 };
 
 export const loginUser = async (credentials) => {
-  const response = await fetch(`${API_BASE_URL}/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  });
+  const response = await api.post("/auth/login", credentials);
 
-  return handleResponse(response);
+  return response.data;
 };
