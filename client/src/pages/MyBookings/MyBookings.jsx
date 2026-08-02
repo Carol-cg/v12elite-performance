@@ -29,6 +29,32 @@ function MyBookings() {
     loadBookings();
   }, []);
 
+
+const handleCancel = async (bookingId) => {
+  try {
+    await bookingService.cancelBooking(bookingId);
+
+    setBookings((previousBookings) =>
+      previousBookings.map((booking) =>
+        booking._id === bookingId
+          ? { ...booking, status: "cancelled" }
+          : booking
+      )
+    );
+  } catch (error) {
+    console.error("Cancel booking error:", error);
+
+    setError(
+      error.response?.data?.message ||
+        error.message ||
+        "Unable to cancel the booking."
+    );
+  }
+};
+
+
+
+
   if (isLoading) {
     return <p>Loading bookings...</p>;
   }
@@ -65,10 +91,14 @@ function MyBookings() {
 
             <p>Status: {booking.status}</p>
 
-            <button>
-            Cancel Booking
-
-          </button>
+              <button
+             onClick={() => handleCancel(booking._id)}
+            disabled={booking.status === "cancelled"}
+              >
+                 {booking.status === "cancelled"
+                  ? "Booking Cancelled"
+                  : "Cancel Booking"}
+             </button>
 
          {booking.notes && (
            <p>Notes: {booking.notes}</p>
