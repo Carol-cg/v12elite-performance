@@ -9,6 +9,7 @@ const { notFound, errorHandler } = require("./middleware/errorHandler");
 const authRoutes = require("./routes/authRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const app = express();
+const aiRoutes = require("./routes/aiRoutes");
 
 // Security headers
 app.use(helmet());
@@ -44,6 +45,8 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 
 app.use("/api/bookings", bookingRoutes);
+
+app.use("/api/ai", aiRoutes);
 
 // 404 + centralized error handler (must be last)
 app.use(notFound);
