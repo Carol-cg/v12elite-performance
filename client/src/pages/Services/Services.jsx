@@ -19,9 +19,43 @@ const handleRecommendation = () => {
       message:
         "Your brakes should be inspected for worn pads, damaged rotors, or another braking issue.",
     });
-  } else {
-    setRecommendation(null);
-  }
+  } else if (issue === "engine") {
+  setRecommendation({
+    service: "Performance Diagnostics",
+    message:
+      "An engine running rough may involve ignition, fuel, sensor, or mechanical problems. We recommend a diagnostic inspection.",
+  });
+} else if (issue === "ac") {
+  setRecommendation({
+    service: "A/C Service",
+    message:
+      "Your air conditioning system may need refrigerant service or leak detection.",
+  });
+
+
+  
+} else if (issue === "oil") {
+  setRecommendation({
+    service: "Routine Oil Service",
+    message:
+      "Your vehicle is due for an oil and filter change to protect engine performance and extend engine life.",
+  });
+} else if (issue === "vibration") {
+  setRecommendation({
+    service: "Suspension & Tire Inspection",
+    message:
+      "A vehicle vibration can be caused by worn suspension components, tire imbalance, or drivetrain issues. We recommend a complete inspection.",
+  });
+} else if (issue === "steering") {
+  setRecommendation({
+    service: "Wheel Alignment",
+    message:
+      "Your vehicle may need a wheel alignment or steering system inspection to correct pulling while driving.",
+  });
+} else {
+  setRecommendation(null);
+}
+
 };
 
 
