@@ -5,7 +5,7 @@ function ServicesPreview() {
   return (
     <section className="services-preview">
       <div className="services-preview-container">
-        <h2>Our Services</h2>
+        
 
         <div className="services-grid">
           <ServiceCard
