@@ -11,7 +11,6 @@ function Services() {
   const [aiAnswer, setAiAnswer] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-
   const handleRecommendation = () => {
     if (issue === "check-engine") {
       setRecommendation({
@@ -61,26 +60,65 @@ function Services() {
   };
 
   const handleAskAssistant = async () => {
-  if (!question.trim()) return;
+    if (!question.trim()) return;
 
-  try {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    const response = await aiService.askAssistant(question);
-    setAiAnswer(response.answer);
-  } catch (error) {
-    console.error(error);
-    setAiAnswer("Sorry, I couldn't answer your question right now.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+      const response = await aiService.askAssistant(question);
+      setAiAnswer(response.answer);
+    } catch (error) {
+      console.error(error);
+      setAiAnswer("Sorry, I couldn't answer your question right now.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <main className="services-page">
       <h1>Our Services</h1>
 
       <ServicesPreview />
+
+      <section className="service-details">
+        <article id="detailing" className="service-detail">
+          <h2>Premium Auto Detailing</h2>
+          <p>
+            Our premium detailing service thoroughly cleans and restores your
+            vehicle's interior and exterior. We focus on paint care, wheels,
+            upholstery, trim, and every detail that makes your vehicle look its
+            absolute best.
+          </p>
+        </article>
+
+        <article id="ceramic" className="service-detail">
+          <h2>Ceramic Coating</h2>
+          <p>
+            Ceramic coating provides long-lasting paint protection while
+            enhancing gloss, making your vehicle easier to clean and protecting
+            it from UV rays and environmental contaminants.
+          </p>
+        </article>
+
+        <article id="diagnostics" className="service-detail">
+          <h2>Performance Diagnostics</h2>
+          <p>
+            Our advanced diagnostic equipment identifies engine, electrical,
+            performance, and sensor issues quickly, allowing our technicians to
+            recommend the proper repair.
+          </p>
+        </article>
+
+        <article id="maintenance" className="service-detail">
+          <h2>Preventive Maintenance</h2>
+          <p>
+            Regular maintenance such as oil changes, brake inspections, filters,
+            fluid checks, and tune-ups helps extend the life of your vehicle and
+            keeps it performing at its best.
+          </p>
+        </article>
+      </section>
 
       <h2>🤖 AI Service Advisor</h2>
 
@@ -94,9 +132,7 @@ function Services() {
         onSubmit={(event) => event.preventDefault()}
       >
         <div>
-          <label htmlFor="issue">
-            What problem are you experiencing?
-          </label>
+          <label htmlFor="issue">What problem are you experiencing?</label>
 
           <select
             id="issue"
@@ -115,9 +151,7 @@ function Services() {
         </div>
 
         <div>
-          <label htmlFor="details">
-            Additional Details
-          </label>
+          <label htmlFor="details">Additional Details</label>
 
           <textarea
             id="details"
@@ -127,16 +161,13 @@ function Services() {
           />
         </div>
 
-        <button
-          type="submit"
-          onClick={handleRecommendation}
-        >
+        <button type="submit" onClick={handleRecommendation}>
           Get Recommendation
         </button>
       </form>
 
       {recommendation && (
-  <section className="recommendation-card">
+        <section className="recommendation-card">
           <h3>Recommended Service</h3>
 
           <p>
@@ -151,30 +182,30 @@ function Services() {
         <h2>Ask the V12 Assistant</h2>
 
         <p>
-          Ask a question about vehicle wraps, ceramic coating, detailing,
-          paint protection, or maintenance.
+          Ask a question about vehicle wraps, ceramic coating, detailing, paint
+          protection, or maintenance.
         </p>
 
-             <textarea
-             value={question}
-             onChange={(event) => setQuestion(event.target.value)}
-             onKeyDown={(event) => {
-             if (event.key === "Enter" && !event.shiftKey) {
-             event.preventDefault();
-                 handleAskAssistant();
-               }
-             }}
-            placeholder="Example: Will a vehicle wrap damage factory paint?"
-            rows="4"
-             />
+        <textarea
+          value={question}
+          onChange={(event) => setQuestion(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              handleAskAssistant();
+            }
+          }}
+          placeholder="Example: Will a vehicle wrap damage factory paint?"
+          rows="4"
+        />
 
         <button
-       type="button"
+          type="button"
           onClick={handleAskAssistant}
-         disabled={isLoading}
-         >
-         {isLoading ? "Thinking..." : "Ask Assistant"}
-       </button>
+          disabled={isLoading}
+        >
+          {isLoading ? "Thinking..." : "Ask Assistant"}
+        </button>
 
         {aiAnswer && (
           <div className="assistant-answer">

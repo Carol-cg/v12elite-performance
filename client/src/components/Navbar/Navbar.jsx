@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/v12-logo.png";
 import "./Navbar.css";
 
 function Navbar() {
@@ -37,30 +38,46 @@ function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="logo">
-          V12 Elite Performance
+        <Link to="/" className="navbar-logo-link">
+          <img
+            src={logo}
+            alt="V12 Elite Performance"
+            className="navbar-logo"
+          />
         </Link>
 
-        <nav className="nav-links">
+        <nav className="nav-links" aria-label="Main navigation">
           <Link to="/">Home</Link>
           <Link to="/services">Services</Link>
+          <Link to="/#about">About</Link>
 
-          {isAuthenticated ? (
-            <>
-              <Link to="/book">Schedule Service</Link>
-              <Link to="/bookings">My Bookings</Link>
+          {isAuthenticated && (
+            <Link to="/bookings">My Bookings</Link>
+          )}
 
-              <button type="button" onClick={handleLogout}>
-                Logout
-              </button>
-            </>
-          ) : (
+          {!isAuthenticated && (
             <>
               <Link to="/login">Login</Link>
               <Link to="/register">Register</Link>
             </>
           )}
         </nav>
+
+        <div className="navbar-actions">
+          <Link to="/book" className="schedule-nav-button">
+            Schedule Service
+          </Link>
+
+          {isAuthenticated && (
+            <button
+              type="button"
+              className="logout-button"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );
