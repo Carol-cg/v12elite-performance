@@ -1,22 +1,53 @@
 .about {
-  background: #ffffff;
-  color: #222;
+  background: #080808;
+  color: #ffffff;
   padding: 100px 20px;
 }
 
 .about-container {
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   text-align: center;
 }
 
+
+.about-label {
+  display: block;
+  margin-bottom: 16px;
+  color: #d40000;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 .about h2 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+  margin: 0 0 30px;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
 }
 
 .about p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #555;
+  max-width: 850px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #cfcfcf;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 70px 20px;
+  }
+
+  .about h2 {
+    font-size: 2.2rem;
+  }
+
+  .about p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
 }

@@ -1,31 +1,54 @@
 .services-page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 50px 20px;
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 60px max(20px, calc((100% - 1100px) / 2)) 80px;
+  box-sizing: border-box;
+  background: #080808;
+  color: #ffffff;
 }
 
 .services-page h1 {
+  margin: 0 0 30px;
+  color: #ffffff;
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 2.6rem;
 }
 
 .services-page h2 {
+  margin: 55px 0 15px;
+  color: #ffffff;
   text-align: center;
-  margin: 40px 0 15px;
 }
 
 .services-page p {
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #cfcfcf;
   text-align: center;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
+/* Keeps anchor headings visible below the fixed navbar */
+#detailing,
+#ceramic,
+#diagnostics,
+#maintenance {
+  scroll-margin-top: 140px;
+}
+
+/* Service advisor form */
+
 .advisor-form {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 30px;
-  margin: 40px auto;
   max-width: 700px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  margin: 40px auto;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .advisor-form div {
@@ -34,18 +57,28 @@
 
 .advisor-form label {
   display: block;
-  font-weight: 600;
   margin-bottom: 8px;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .advisor-form select,
 .advisor-form textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background: #1c1c1c;
+  color: #ffffff;
+  border: 1px solid #444444;
   border-radius: 8px;
   font-size: 1rem;
-  box-sizing: border-box;
+}
+
+.advisor-form select:focus,
+.advisor-form textarea:focus,
+.assistant-section textarea:focus {
+  outline: 2px solid #d40000;
+  outline-offset: 2px;
 }
 
 .advisor-form textarea {
@@ -56,70 +89,93 @@
   width: 100%;
   padding: 14px;
   background: #d40000;
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: .3s;
+  transition: background 0.3s ease;
 }
 
 .advisor-form button:hover {
   background: #b10000;
 }
 
+/* Recommendation result */
+
 .recommendation-card {
-  background: #f8f8f8;
-  border-left: 5px solid #d40000;
-  padding: 25px;
-  border-radius: 10px;
-  margin: 40px auto;
   max-width: 700px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+  margin: 40px auto;
+  padding: 25px;
+  background: #121212;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 5px solid #d40000;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .recommendation-card h3 {
   margin-top: 0;
+  color: #ffffff;
 }
 
+.recommendation-card p {
+  color: #cfcfcf;
+  text-align: left;
+}
+
+/* AI assistant */
+
 .assistant-section {
-  background: #1c1c1c;
-  color: white;
+  max-width: 900px;
+  margin: 70px auto 0;
   padding: 40px;
+  box-sizing: border-box;
+  background: #121212;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  margin-top: 60px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .assistant-section h2 {
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
+  margin: 0 0 20px;
+  color: #ffffff;
+  text-align: center;
 }
 
 .assistant-section p {
-    color: white;
-    text-align: center;
+  color: #cfcfcf;
+  text-align: center;
 }
 
 .assistant-section textarea {
   width: 100%;
-  padding: 15px;
-  border-radius: 10px;
+  min-height: 130px;
   margin: 25px 0;
-  border: none;
+  padding: 15px;
   box-sizing: border-box;
+  resize: vertical;
+  background: #1c1c1c;
+  color: #ffffff;
+  border: 1px solid #444444;
+  border-radius: 10px;
   font-size: 1rem;
 }
 
 .assistant-section button {
   display: block;
-  margin: auto;
+  margin: 0 auto;
   padding: 14px 30px;
   background: #d40000;
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .assistant-section button:hover {
@@ -128,22 +184,27 @@
 
 .assistant-answer {
   margin-top: 30px;
-  background: white;
-  color: #222;
   padding: 20px;
+  background: #1c1c1c;
+  color: #ffffff;
+  border-left: 4px solid #d40000;
   border-radius: 10px;
 }
 
 .assistant-answer p {
-  color: #222;
-  text-align: left;
   margin: 0;
+  color: #e0e0e0;
+  text-align: left;
   line-height: 1.6;
 }
 
 @media (max-width: 768px) {
   .services-page {
-    padding: 30px 15px;
+    padding: 40px 15px 60px;
+  }
+
+  .services-page h1 {
+    font-size: 2rem;
   }
 
   .advisor-form,

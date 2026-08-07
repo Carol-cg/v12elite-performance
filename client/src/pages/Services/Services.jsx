@@ -77,7 +77,7 @@ function Services() {
 
   return (
     <main className="services-page">
-      <h1>Our Services</h1>
+      
 
       <ServicesPreview />
 
