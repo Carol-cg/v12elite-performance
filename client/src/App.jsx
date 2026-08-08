@@ -10,6 +10,8 @@ import MyBookings from "./pages/MyBookings/MyBookings";
 import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Footer from "./components/Footer/Footer";
+
 
 function App() {
   return (
@@ -60,6 +62,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

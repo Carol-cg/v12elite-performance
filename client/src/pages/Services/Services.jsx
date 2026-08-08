@@ -1,7 +1,13 @@
 import { useState } from "react";
 import ServicesPreview from "../../components/ServicesPreview/ServicesPreview";
+import ServiceSection from "../../components/ServiceSection/ServiceSection";
 import aiService from "../../services/aiService";
+import detailingImage from "../../assets/services/detailing.png";
+import ceramicImage from "../../assets/services/ceramic.png";
 import "./Services.css";
+import diagnosticsImage from "../../assets/services/diagnostics.png";
+import maintenanceImage from "../../assets/services/maintenance.png";
+
 
 function Services() {
   const [issue, setIssue] = useState("");
@@ -77,47 +83,59 @@ function Services() {
 
   return (
     <main className="services-page">
-      
-
       <ServicesPreview />
 
       <section className="service-details">
-        <article id="detailing" className="service-detail">
-          <h2>Premium Auto Detailing</h2>
-          <p>
-            Our premium detailing service thoroughly cleans and restores your
-            vehicle's interior and exterior. We focus on paint care, wheels,
-            upholstery, trim, and every detail that makes your vehicle look its
-            absolute best.
-          </p>
-        </article>
+        <ServiceSection
+          title="Premium Auto Detailing"
+          description="Our premium detailing service thoroughly cleans and restores your vehicle's interior and exterior with careful attention to every surface and finish."
+          image={detailingImage}
+          imageAlt="Premium auto detailing service"
+          features={[
+            "Paint correction",
+            "Interior detailing",
+            "Exterior protection",
+          ]}
+        />
 
-        <article id="ceramic" className="service-detail">
-          <h2>Ceramic Coating</h2>
-          <p>
-            Ceramic coating provides long-lasting paint protection while
-            enhancing gloss, making your vehicle easier to clean and protecting
-            it from UV rays and environmental contaminants.
-          </p>
-        </article>
+        <ServiceSection
+          reverse
+          title="Ceramic Coating"
+          description="Protect your vehicle's paint with a professional ceramic coating that provides long-lasting gloss, hydrophobic protection, and resistance against environmental contaminants."
+          image={ceramicImage}
+          imageAlt="Ceramic coating service"
+          features={[
+            "Long-lasting protection",
+            "Hydrophobic finish",
+            "UV resistance",
+          ]}
+        />
 
-        <article id="diagnostics" className="service-detail">
-          <h2>Performance Diagnostics</h2>
-          <p>
-            Our advanced diagnostic equipment identifies engine, electrical,
-            performance, and sensor issues quickly, allowing our technicians to
-            recommend the proper repair.
-          </p>
-        </article>
+<ServiceSection
+  title="Performance Diagnostics"
+  description="Advanced diagnostic technology helps identify engine, electrical, sensor, and performance-related issues quickly and accurately."
+  image={diagnosticsImage}
+  imageAlt="Performance diagnostics service"
+  features={[
+    "Computerized diagnostics",
+    "Engine and sensor testing",
+    "Performance issue detection",
+  ]}
+/>
 
-        <article id="maintenance" className="service-detail">
-          <h2>Preventive Maintenance</h2>
-          <p>
-            Regular maintenance such as oil changes, brake inspections, filters,
-            fluid checks, and tune-ups helps extend the life of your vehicle and
-            keeps it performing at its best.
-          </p>
-        </article>
+<ServiceSection
+  reverse
+  title="Preventive Maintenance"
+  description="Keep your vehicle performing at its best with routine maintenance including oil changes, brake inspections, fluid services, filters, belts, and scheduled maintenance."
+  image={maintenanceImage}
+  imageAlt="Preventive maintenance service"
+  features={[
+    "Oil & filter changes",
+    "Brake & fluid inspections",
+    "Factory scheduled maintenance",
+  ]}
+/>
+
       </section>
 
       <h2>🤖 AI Service Advisor</h2>
@@ -132,7 +150,9 @@ function Services() {
         onSubmit={(event) => event.preventDefault()}
       >
         <div>
-          <label htmlFor="issue">What problem are you experiencing?</label>
+          <label htmlFor="issue">
+            What problem are you experiencing?
+          </label>
 
           <select
             id="issue"
@@ -161,7 +181,10 @@ function Services() {
           />
         </div>
 
-        <button type="submit" onClick={handleRecommendation}>
+        <button
+          type="submit"
+          onClick={handleRecommendation}
+        >
           Get Recommendation
         </button>
       </form>
@@ -182,8 +205,8 @@ function Services() {
         <h2>Ask the V12 Assistant</h2>
 
         <p>
-          Ask a question about vehicle wraps, ceramic coating, detailing, paint
-          protection, or maintenance.
+          Ask a question about vehicle wraps, ceramic coating, detailing,
+          paint protection, or maintenance.
         </p>
 
         <textarea
