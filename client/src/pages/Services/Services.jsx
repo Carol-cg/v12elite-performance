@@ -86,56 +86,63 @@ function Services() {
       <ServicesPreview />
 
       <section className="service-details">
-        <ServiceSection
-          title="Premium Auto Detailing"
-          description="Our premium detailing service thoroughly cleans and restores your vehicle's interior and exterior with careful attention to every surface and finish."
-          image={detailingImage}
-          imageAlt="Premium auto detailing service"
-          features={[
-            "Paint correction",
-            "Interior detailing",
-            "Exterior protection",
-          ]}
-        />
+     <ServiceSection
+    title="Premium Auto Detailing"
+    category="Appearance & Protection"
+    duration="Estimated 2–4 hours"
+    description="Our premium detailing service thoroughly cleans and restores your vehicle's interior and exterior with careful attention to every surface and finish."
+    image={detailingImage}
+    imageAlt="Premium auto detailing service"
+    features={[
+      "Paint correction",
+      "Interior detailing",
+      "Exterior protection",
+    ]}
+  />
+
+  <ServiceSection
+    reverse
+    title="Ceramic Coating"
+    category="Paint Protection"
+    duration="Estimated 1–2 days"
+    description="Protect your vehicle's paint with a professional ceramic coating that provides long-lasting gloss, hydrophobic protection, and resistance against environmental contaminants."
+    image={ceramicImage}
+    imageAlt="Ceramic coating service"
+    features={[
+      "Long-lasting protection",
+      "Hydrophobic finish",
+      "UV resistance",
+    ]}
+  />
 
         <ServiceSection
-          reverse
-          title="Ceramic Coating"
-          description="Protect your vehicle's paint with a professional ceramic coating that provides long-lasting gloss, hydrophobic protection, and resistance against environmental contaminants."
-          image={ceramicImage}
-          imageAlt="Ceramic coating service"
-          features={[
-            "Long-lasting protection",
-            "Hydrophobic finish",
-            "UV resistance",
-          ]}
-        />
+    title="Performance Diagnostics"
+    category="Diagnostics"
+    duration="Estimated 1–2 hours"
+    description="Advanced diagnostic technology helps identify engine, electrical, sensor, and performance-related issues quickly and accurately."
+    image={diagnosticsImage}
+    imageAlt="Performance diagnostics service"
+    features={[
+      "Computerized diagnostics",
+      "Engine and sensor testing",
+      "Performance issue detection",
+    ]}
+  />
 
-<ServiceSection
-  title="Performance Diagnostics"
-  description="Advanced diagnostic technology helps identify engine, electrical, sensor, and performance-related issues quickly and accurately."
-  image={diagnosticsImage}
-  imageAlt="Performance diagnostics service"
-  features={[
-    "Computerized diagnostics",
-    "Engine and sensor testing",
-    "Performance issue detection",
-  ]}
-/>
-
-<ServiceSection
-  reverse
-  title="Preventive Maintenance"
-  description="Keep your vehicle performing at its best with routine maintenance including oil changes, brake inspections, fluid services, filters, belts, and scheduled maintenance."
-  image={maintenanceImage}
-  imageAlt="Preventive maintenance service"
-  features={[
-    "Oil & filter changes",
-    "Brake & fluid inspections",
-    "Factory scheduled maintenance",
-  ]}
-/>
-
+      <ServiceSection
+    reverse
+    title="Preventive Maintenance"
+    category="Maintenance"
+    duration="Estimated 1–3 hours"
+    description="Keep your vehicle performing at its best with routine maintenance including oil changes, brake inspections, fluid services, filters, belts, and scheduled maintenance."
+    image={maintenanceImage}
+    imageAlt="Preventive maintenance service"
+    features={[
+      "Oil & filter changes",
+      "Brake & fluid inspections",
+      "Factory scheduled maintenance",
+    ]}
+  />
       </section>
 
       <h2>🤖 AI Service Advisor</h2>

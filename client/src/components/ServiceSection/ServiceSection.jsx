@@ -1,7 +1,12 @@
 import "./ServiceSection.css";
+import { Link } from "react-router-dom";
+import "./ServiceSection.css";
+
 
 function ServiceSection({
   title,
+  category,
+  duration,
   description,
   image,
   imageAlt,
@@ -16,7 +21,11 @@ function ServiceSection({
 
       <div className="service-content">
         <h2>{title}</h2>
-
+         <div className="service-meta">
+     <span>{category}</span>
+      <span>{duration}</span>
+     
+     </div>
         <p>{description}</p>
 
         <ul>
@@ -25,9 +34,9 @@ function ServiceSection({
           ))}
         </ul>
 
-        <button className="service-button">
-          Schedule Service
-        </button>
+       <Link to="/book" className="service-button">
+                Schedule Service
+        </Link>
       </div>
     </section>
   );

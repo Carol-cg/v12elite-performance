@@ -37,6 +37,33 @@
   font-size: 2.4rem;
 }
 
+/* Service category and estimated duration */
+.service-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.service-meta span {
+  display: inline-block;
+  padding: 6px 10px;
+
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+
+  color: #cfcfcf;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.service-meta span:first-child {
+  color: #ef0000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .service-content p {
   margin: 0 0 24px;
   color: #cfcfcf;
@@ -64,6 +91,7 @@
 .service-button {
   display: inline-block;
   padding: 14px 26px;
+  text-decoration: none;
 
   background: #d40000;
   color: #ffffff;
@@ -76,6 +104,7 @@
   text-transform: uppercase;
 
   cursor: pointer;
+
   transition:
     background 0.25s ease,
     transform 0.25s ease;
@@ -108,5 +137,10 @@
 
   .service-content p {
     text-align: center;
+  }
+
+  .service-meta {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
