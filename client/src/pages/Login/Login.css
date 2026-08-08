@@ -1,0 +1,138 @@
+.login-page {
+  min-height: 100vh;
+  background: #080808;
+  color: #ffffff;
+  padding: 150px 20px 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 600px;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 40px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #d40000;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.login-header h1 {
+  margin: 0 0 14px;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.login-header p {
+  margin: 0;
+  color: #cfcfcf;
+  line-height: 1.6;
+}
+
+.login-error {
+  margin-bottom: 22px;
+  padding: 13px 16px;
+  background: rgba(212, 0, 0, 0.12);
+  border: 1px solid rgba(212, 0, 0, 0.4);
+  border-radius: 8px;
+  color: #ff9c9c;
+  text-align: center;
+}
+
+.login-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+.login-form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.login-form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+..login-form-group input:focus {
+  outline: none;
+  border-color: #e11b22;
+  box-shadow: 0 0 10px rgba(225, 27, 34, 0.3);
+}
+
+.login-submit {
+  width: 100%;
+  padding: 16px;
+  background: #d40000;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.login-submit:hover:not(:disabled) {
+  background: #ef0000;
+}
+
+.login-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-register-text {
+  margin: 24px 0 0;
+  text-align: center;
+  color: #bdbdbd;
+}
+
+.login-register-link {
+  padding: 0;
+  background: none;
+  border: none;
+  color: #ff3b3b;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-register-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .login-page {
+    padding: 70px 16px 50px;
+  }
+
+  .login-card {
+    padding: 28px 22px;
+  }
+}

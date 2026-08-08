@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../services/authService";
-
+import "./Login.css";
 
 
 
@@ -58,13 +58,26 @@ function Login() {
   };
 
   return (
-    <main>
-      <h1>Login</h1>
+  <main className="login-page">
+    <section className="login-card">
+      <div className="login-header">
+        <span className="login-label">MEMBER LOGIN</span>
 
-      {error && <p role="alert">{error}</p>}
+        <h1>Welcome Back</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <p>
+          Sign in to manage your appointments and access your V12 account.
+        </p>
+      </div>
+
+      {error && (
+        <p className="login-error" role="alert">
+          {error}
+        </p>
+      )}
+
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="login-form-group">
           <label htmlFor="email">Email</label>
 
           <input
@@ -73,11 +86,12 @@ function Login() {
             type="email"
             value={formData.email}
             onChange={handleChange}
+            placeholder="Email Address"
             required
           />
         </div>
 
-        <div>
+        <div className="login-form-group">
           <label htmlFor="password">Password</label>
 
           <input
@@ -86,16 +100,33 @@ function Login() {
             type="password"
             value={formData.password}
             onChange={handleChange}
+            placeholder="Password"
             required
           />
         </div>
 
-        <button type="submit" disabled={isLoading}>
+        <button
+          className="login-submit"
+          type="submit"
+          disabled={isLoading}
+        >
           {isLoading ? "Logging in..." : "Log In"}
         </button>
       </form>
-    </main>
-  );
+
+      <p className="login-register-text">
+        New to V12 Elite Performance?{" "}
+        <button
+          className="login-register-link"
+          type="button"
+          onClick={() => navigate("/register")}
+        >
+          Create an account
+        </button>
+      </p>
+    </section>
+  </main>
+);
 }
 
 export default Login;
