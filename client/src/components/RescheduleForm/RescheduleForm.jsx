@@ -1,3 +1,5 @@
+import "./RescheduleForm.css";
+
 function RescheduleForm({
   booking,
   newDate,
@@ -11,12 +13,12 @@ function RescheduleForm({
     <div className="reschedule-form">
       <h3>Reschedule Appointment</h3>
 
-      <p>
+      <p className="reschedule-service">
         <strong>Service:</strong> {booking.service}
       </p>
 
       <form onSubmit={handleSaveReschedule}>
-        <div>
+        <div className="reschedule-group">
           <label htmlFor="newDate">New Date</label>
 
           <input
@@ -24,10 +26,11 @@ function RescheduleForm({
             type="date"
             value={newDate}
             onChange={(event) => setNewDate(event.target.value)}
+            required
           />
         </div>
 
-        <div>
+        <div className="reschedule-group">
           <label htmlFor="newTime">New Time</label>
 
           <input
@@ -35,19 +38,26 @@ function RescheduleForm({
             type="time"
             value={newTime}
             onChange={(event) => setNewTime(event.target.value)}
+            required
           />
         </div>
 
-        <button type="submit">
-          Save Changes
-        </button>
+        <div className="reschedule-actions">
+          <button
+            className="reschedule-save"
+            type="submit"
+          >
+            Save Changes
+          </button>
 
-        <button
-          type="button"
-          onClick={handleCancelReschedule}
-        >
-          Cancel
-        </button>
+          <button
+            className="reschedule-cancel"
+            type="button"
+            onClick={handleCancelReschedule}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

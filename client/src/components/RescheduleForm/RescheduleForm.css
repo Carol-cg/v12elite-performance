@@ -1,0 +1,92 @@
+.reschedule-form {
+  margin-top: 28px;
+  padding: 24px;
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.reschedule-form h3 {
+  margin: 0 0 18px;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.reschedule-service {
+  margin-bottom: 20px;
+  color: #d8d8d8;
+}
+
+.reschedule-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.reschedule-group label {
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.reschedule-group input {
+  width: 100%;
+  padding: 13px 14px;
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.reschedule-group input:focus {
+  outline: none;
+  border-color: #d40000;
+  box-shadow: 0 0 0 2px rgba(212, 0, 0, 0.2);
+}
+
+.reschedule-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.reschedule-save,
+.reschedule-cancel {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reschedule-save {
+  background: #d40000;
+  color: #ffffff;
+  border: none;
+}
+
+.reschedule-save:hover {
+  background: #ef0000;
+}
+
+.reschedule-cancel {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #444444;
+}
+
+.reschedule-cancel:hover {
+  border-color: #777777;
+}
+
+@media (max-width: 600px) {
+  .reschedule-actions {
+    flex-direction: column;
+  }
+
+  .reschedule-save,
+  .reschedule-cancel {
+    width: 100%;
+  }
+}
