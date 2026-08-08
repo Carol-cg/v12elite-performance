@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { registerUser } from "../../services/authService";
+import "./Register.css";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -53,62 +54,95 @@ function Register() {
   };
 
   return (
-    <main>
-      <h1>Create Account</h1>
+  <main className="register-page">
+    <section className="register-card">
+      <div className="register-header">
+        <span className="register-label">CREATE ACCOUNT</span>
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <h1>Join V12 Elite Performance</h1>
+
+        <p>
+          Create your account to schedule service and manage your appointments.
+        </p>
+      </div>
+
+      {message && (
+        <p className="register-success" role="status">
+          {message}
+        </p>
+      )}
+
+      {error && (
+        <p className="register-error" role="alert">
+          {error}
+        </p>
+      )}
+
+      <form className="register-form" onSubmit={handleSubmit}>
+        <div className="register-form-group">
           <label htmlFor="name">Name</label>
+
           <input
             id="name"
             name="name"
             type="text"
             value={formData.name}
             onChange={handleChange}
+            placeholder="Full Name"
             maxLength="100"
             required
           />
         </div>
 
-        <div>
+        <div className="register-form-group">
           <label htmlFor="email">Email</label>
+
           <input
             id="email"
             name="email"
             type="email"
             value={formData.email}
             onChange={handleChange}
+            placeholder="Email Address"
             required
           />
         </div>
 
-        <div>
+        <div className="register-form-group">
           <label htmlFor="password">Password</label>
+
           <input
             id="password"
             name="password"
             type="password"
             value={formData.password}
             onChange={handleChange}
+            placeholder="Password"
             minLength="8"
             required
           />
 
-          <small>
+          <small className="register-help">
             Password must be at least 8 characters and contain at least one
             number.
           </small>
         </div>
 
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Creating account..." : "Register"}
+        <button
+          className="register-submit"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Creating account..." : "Create Account"}
         </button>
-      </form>
+              </form>
 
-      {message && <p role="status">{message}</p>}
-      {error && <p role="alert">{error}</p>}
+        <p className="register-footer">
+          Already have an account?{" "}
+          <a href="/login">Log In</a>
+        </p>
+      </section>
     </main>
   );
 }
-
 export default Register;
