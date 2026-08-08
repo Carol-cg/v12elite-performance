@@ -1,5 +1,7 @@
 import { useState } from "react";
 import bookingService from "../../services/bookingService";
+import "./BookAppointment.css";
+
 
 function BookAppointment() {
   const [formData, setFormData] = useState({
@@ -63,11 +65,20 @@ function BookAppointment() {
   };
 
   return (
-    <div>
-      <h1>Schedule Service</h1>
+  <main className="booking-page">
+    <section className="booking-container">
+      <div className="booking-header">
+        <span className="booking-label">SCHEDULE SERVICE</span>
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <h1>Book Your Appointment</h1>
+
+        <p>
+          Tell us about your vehicle and choose a service time that works for you.
+        </p>
+      </div>
+
+      <form className="booking-form" onSubmit={handleSubmit}>
+        <div className="booking-form-group">
           <label htmlFor="name">Name</label>
 
           <input
@@ -81,7 +92,7 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
+        <div className="booking-form-group">
           <label htmlFor="email">Email</label>
 
           <input
@@ -95,7 +106,7 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
+        <div className="booking-form-group">
           <label htmlFor="phone">Phone</label>
 
           <input
@@ -109,7 +120,7 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
+        <div className="booking-form-group">
           <label htmlFor="vehicleMake">Vehicle Make</label>
 
           <input
@@ -123,7 +134,7 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
+        <div className="booking-form-group">
           <label htmlFor="vehicleModel">Vehicle Model</label>
 
           <input
@@ -137,7 +148,7 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
+        <div className="booking-form-group">
           <label htmlFor="vehicleYear">Vehicle Year</label>
 
           <input
@@ -153,7 +164,7 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
+        <div className="booking-form-group">
           <label htmlFor="service">Service</label>
 
           <select
@@ -166,20 +177,14 @@ function BookAppointment() {
             <option value="">Select a Service</option>
             <option value="Oil Change">Oil Change</option>
             <option value="Brake Service">Brake Service</option>
-            <option value="Engine Diagnostics">
-              Engine Diagnostics
-            </option>
+            <option value="Engine Diagnostics">Engine Diagnostics</option>
             <option value="AC Repair">AC Repair</option>
-            <option value="Performance Tune">
-              Performance Tune
-            </option>
+            <option value="Performance Tune">Performance Tune</option>
           </select>
         </div>
 
-        <div>
-          <label htmlFor="appointmentDate">
-            Appointment Date
-          </label>
+        <div className="booking-form-group">
+          <label htmlFor="appointmentDate">Appointment Date</label>
 
           <input
             id="appointmentDate"
@@ -191,10 +196,8 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
-          <label htmlFor="appointmentTime">
-            Appointment Time
-          </label>
+        <div className="booking-form-group">
+          <label htmlFor="appointmentTime">Appointment Time</label>
 
           <input
             id="appointmentTime"
@@ -206,7 +209,7 @@ function BookAppointment() {
           />
         </div>
 
-        <div>
+        <div className="booking-form-group">
           <label htmlFor="notes">Additional Notes</label>
 
           <textarea
@@ -219,12 +222,13 @@ function BookAppointment() {
           />
         </div>
 
-        <button type="submit">
+        <button className="booking-submit" type="submit">
           Schedule Appointment
         </button>
       </form>
-    </div>
-  );
+    </section>
+  </main>
+);
 }
 
 export default BookAppointment;
