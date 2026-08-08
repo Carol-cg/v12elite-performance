@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import bookingService from "../../services/bookingService";
+import "./Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -32,47 +33,81 @@ function Dashboard() {
   }, []);
 
   return (
-    <main>
-      <h1>Welcome{user ? `, ${user.name}` : ""}!</h1>
+  <main className="dashboard-page">
+    <section className="dashboard-container">
+      <div className="dashboard-header">
+        <span className="dashboard-label">MEMBER DASHBOARD</span>
 
-      <h2>Your Dashboard</h2>
+        <h1>
+          Welcome{user ? `, ${user.name}` : ""}!
+        </h1>
 
-      {nextBooking ? (
-        <section>
-          <h3>Upcoming Appointment</h3>
+        <p>
+          Manage your appointments and quickly access your V12 services.
+        </p>
+      </div>
 
-          <p>
-            <strong>Service:</strong> {nextBooking.service}
-          </p>
+      <div className="dashboard-grid">
+        <section className="dashboard-card">
+          <h2>Upcoming Appointment</h2>
 
-          <p>
-            <strong>Date:</strong>{" "}
-            {new Date(
-              nextBooking.appointmentDate
-            ).toLocaleDateString()}
-          </p>
+          {nextBooking ? (
+            <div className="appointment-details">
+              <p>
+                <strong>Service:</strong> {nextBooking.service}
+              </p>
 
-          <p>
-            <strong>Time:</strong> {nextBooking.appointmentTime}
-          </p>
+              <p>
+                <strong>Date:</strong>{" "}
+                {new Date(
+                  nextBooking.appointmentDate
+                ).toLocaleDateString("en-US", {
+                  timeZone: "UTC",
+                })}
+              </p>
+
+              <p>
+                <strong>Time:</strong> {nextBooking.appointmentTime}
+              </p>
+            </div>
+          ) : (
+            <div className="dashboard-empty">
+              <h3>No Upcoming Appointments</h3>
+
+              <p>
+                You're all caught up. Schedule your next service whenever
+                you're ready.
+              </p>
+            </div>
+          )}
         </section>
-      ) : (
-        <p>You don't have any upcoming appointments.</p>
-      )}
 
-      <br />
+        <section className="dashboard-card">
+          <h2>Quick Actions</h2>
 
-      <Link to="/book">
-        <button>Schedule Service</button>
-      </Link>
+          <p className="quick-actions-text">
+            Schedule a new service or manage your existing appointments.
+          </p>
 
-      {" "}
+          <div className="dashboard-actions">
+            <Link
+              className="dashboard-primary-button"
+              to="/book"
+            >
+              Schedule Service
+            </Link>
 
-      <Link to="/bookings">
-        <button>My Bookings</button>
-      </Link>
-    </main>
-  );
+            <Link
+              className="dashboard-secondary-button"
+              to="/bookings"
+            >
+              My Bookings
+            </Link>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+);
 }
-
 export default Dashboard;

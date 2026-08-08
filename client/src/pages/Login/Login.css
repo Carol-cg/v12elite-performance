@@ -79,7 +79,7 @@
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-..login-form-group input:focus {
+.login-form-group input:focus {
   outline: none;
   border-color: #e11b22;
   box-shadow: 0 0 10px rgba(225, 27, 34, 0.3);
